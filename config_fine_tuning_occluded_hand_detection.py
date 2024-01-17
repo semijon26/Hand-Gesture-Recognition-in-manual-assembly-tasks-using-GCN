@@ -9,7 +9,9 @@ class CFG:
     epochs = 500
     print_freq = 100
     resume = False
-    classes_fine_tuning = ["Grasp",   "Release",    "Negative"]
+
+    num_classes_fine_tuning = 2
+    classes_fine_tuning = ["Wave",   "ThumbsUp"]
 
     model_type = "AAGCN"
 
@@ -22,7 +24,7 @@ class CFG:
     sam = True             #Abl
     only_dist = False       #Abl
 
-    experiment_name = f"7{model_type}_seqlen{sequence_length}_finetuned_{'SAM_' if sam else ''}{'joints1_' if add_joints1 else ''}{'joints2_' if add_joints2 else ''}{'dist' if only_dist else ''}"
+    experiment_name = f"WaveThumbsUp_{model_type}_seqlen{sequence_length}_finetuned_{'SAM_' if sam else ''}{'joints1_' if add_joints1 else ''}{'joints2_' if add_joints2 else ''}{'dist' if only_dist else ''}"
 
     plot_weights = True
     
