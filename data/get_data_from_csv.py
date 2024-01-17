@@ -7,7 +7,14 @@ curr_dir = os.path.dirname(__file__)
 train_ids = [0, 2, 5, 7, 9, 10, 11, 13, 21, 22, 23]
 val_ids = [6, 12, 20]
 
-
+def get_dfs_from_own_dataset():
+    dfs = []
+    dfs.append(pd.read_csv(os.path.join(curr_dir, f"own_dataset/DataSet.csv"), index_col=0))
+    return dfs
+def get_val_dfs_from_own_dataset():
+    dfs = []
+    dfs.append(pd.read_csv(os.path.join(curr_dir, f"own_dataset/ValDataSet.csv"), index_col=0))
+    return dfs
 def dfs_from_ids(ids, get_augmented=True):
     dfs = []
     for i in ids:
@@ -23,12 +30,12 @@ def dfs_from_ids(ids, get_augmented=True):
     return dfs
 
 def get_train_data():
-    train_dfs = dfs_from_ids(train_ids)
+    train_dfs = get_dfs_from_own_dataset()
     df_train = pd.concat(train_dfs)
     return df_train
 
 def get_val_data():
-    val_dfs = dfs_from_ids(val_ids)
+    val_dfs = get_val_dfs_from_own_dataset()
     df_val = pd.concat(val_dfs)
     return df_val
 
