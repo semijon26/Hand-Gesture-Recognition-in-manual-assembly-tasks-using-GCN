@@ -1,6 +1,6 @@
 class CFG:
     debug = False
-    batch_size = 16
+    batch_size = 13
     sequence_length = 32
     num_classes = 6
     num_feats = 3
@@ -24,7 +24,7 @@ class CFG:
     sam = True             #Abl
     only_dist = False       #Abl
 
-    experiment_name = f"WaveThumbsUp_{model_type}_seqlen{sequence_length}_finetuned_{'SAM_' if sam else ''}{'joints1_' if add_joints1 else ''}{'joints2_' if add_joints2 else ''}{'dist' if only_dist else ''}"
+    experiment_name = f"WaveThumbsUp_{model_type}_seqlen{sequence_length}_batch{batch_size}_finetuned_{'SAM_' if sam else ''}{'joints1_' if add_joints1 else ''}{'joints2_' if add_joints2 else ''}{'dist' if only_dist else ''}"
 
     plot_weights = True
     
