@@ -1,4 +1,4 @@
-from config import CFG
+from config_fine_tuning_occluded_hand_detection import CFG
 import sklearn.preprocessing
 import numpy as np
 from ast import literal_eval as make_tuple
@@ -17,9 +17,13 @@ def df_to_numpy(df):
   x = np.array(x)
   x = x.reshape(len(x_elems), 3*21)
 
-  lb = sklearn.preprocessing.LabelBinarizer().fit(CFG.classes)
+  lb = sklearn.preprocessing.LabelBinarizer().fit(CFG.classes_fine_tuning)
   y = np.array(df["LABEL"]).reshape(-1,1)
   y_ohe = lb.transform(y)
+
+  print("df_to_numpy: Original labels:", np.array(df["LABEL"]).reshape(-1, 1)[:200])
+  print("One-hot encoded labels:", y_ohe[:200])
+
 
   train_data_numpy = (x, y_ohe)
   return train_data_numpy
@@ -42,7 +46,7 @@ class HandPoseDatasetNumpy(Dataset):
         to_pad = CFG.sequence_length - seq_x.shape[0]
         x_pad = np.pad(seq_x, ((0, to_pad), (0, 0)), mode='mean')
         y_pad = np.pad(seq_y, ((0, to_pad), (0, 0)), mode='mean')
-        
+
         x = x_pad.reshape(CFG.sequence_length, 21, 3)
         
         if CFG.add_feats:
@@ -78,9 +82,7 @@ class HandImageDataset(Dataset):
         self.data_frames = df
         self.labels = self.data_frames["label"]
         self.img_paths = self.data_frames["file"]
-        self.classes = ["Grasp",   "Move",    "Negative",    "Position",    "Reach",   "Release"]
-        if CFG.no_release:
-            self.classes = ["Grasp",   "Move",    "Negative",    "Position",    "Reach"]
+        self.classes = CFG.classes_fine_tuning
         self.lb = sklearn.preprocessing.LabelBinarizer().fit(self.classes)
         self.seq_len = seq_len
         self.root_dir = root_dir

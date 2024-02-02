@@ -1,0 +1,40 @@
+Vermutliche Übersetzung der Dataset-Columns / Datenpunkten der Hand:
+
+HANDGELENK: Handgelenk
+DAUMEN_CMC: Daumen-Karpometakarpalgelenk
+DAUMEN_MCP: Daumen-Metakarpophalangealgelenk
+DAUMEN_IP: Daumen-Interphalangealgelenk
+DAUMEN_SPITZE: Daumenspitze
+ZEIGEFINGER_MCP: Zeigefinger-Metakarpophalangealgelenk
+ZEIGEFINGER_PIP: Zeigefinger-Proximales Interphalangealgelenk
+ZEIGEFINGER_DIP: Zeigefinger-Distales Interphalangealgelenk
+ZEIGEFINGER_SPITZE: Zeigefingerspitze
+MITTELFINGER_MCP: Mittelfinger-Metakarpophalangealgelenk
+MITTELFINGER_PIP: Mittelfinger-Proximales Interphalangealgelenk
+MITTELFINGER_DIP: Mittelfinger-Distales Interphalangealgelenk
+MITTELFINGER_SPITZE: Mittelfingerspitze
+RINGFINGER_MCP: Ringfinger-Metakarpophalangealgelenk
+RINGFINGER_PIP: Ringfinger-Proximales Interphalangealgelenk
+RINGFINGER_DIP: Ringfinger-Distales Interphalangealgelenk
+RINGFINGER_SPITZE: Ringfingerspitze
+KLEINER_FINGER_MCP: Kleiner Finger-Metakarpophalangealgelenk
+KLEINER_FINGER_PIP: Kleiner Finger-Proximales Interphalangealgelenk
+KLEINER_FINGER_DIP: Kleiner Finger-Distales Interphalangealgelenk
+KLEINER_FINGER_SPITZE: Kleiner Fingerspitze
+
+
+
+--> Nur Positionen, keine Winkel
+
+Nur 1 Hand
+
+Evtl könnte man das Modell so auf 2 Hände umbauen:
+    a) Einfach alle Datenpunkte für die zweite Hand hinzufügen und
+    zwischen linker / rechter Hand unterscheiden.
+    Problem: Es werden vermutlich die Positionen der Hände zueinander mitgelernt
+
+    b) Lösung:
+        - 2 Netze, je eins pro Hand
+        - Algorithmisch entscheiden welche Hand links und welche rechts ist durch absolute Position
+        - Auf Grundlage der Outputs beider Netze entscheiden welche Geste ausgeführt wird
+        - z.B. mit einem weiteren NN oder einfach algorithmisch

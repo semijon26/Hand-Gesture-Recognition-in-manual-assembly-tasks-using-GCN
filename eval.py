@@ -21,6 +21,7 @@ from config import CFG
 from utils import training_supervision, adj_mat
 
 is_cuda = torch.cuda.is_available()
+print(is_cuda) # False
 
 if is_cuda:
     device = torch.device("cuda")

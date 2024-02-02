@@ -3,7 +3,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
-from config import CFG
 
 def conv_branch_init(conv, branches):
     weight = conv.weight
